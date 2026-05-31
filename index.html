@@ -2,21 +2,19 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FumiMat - Gestión Premium de Fumigación Semestral</title>
-  <!-- Importación de Tailwind CSS para un diseño moderno y fluido -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>FumiMat - Gestión Semestral</title>
+  <!-- Importación de Tailwind CSS para un diseño fluido -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts: Inter para máxima legibilidad tipográfica -->
+  <!-- Google Fonts: Inter para máxima legibilidad premium -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Inter', sans-serif;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
     }
-    /* Animaciones fluidas para transiciones de estado */
-    .transition-all-300 {
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    /* Esconder scrollbar por estética */
+    /* Ocultar barra de desplazamiento */
     .no-scrollbar::-webkit-scrollbar {
       display: none;
     }
@@ -24,436 +22,306 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
+    /* Animaciones suaves de navegación */
+    .view-transition {
+      transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
+    }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between overflow-x-hidden antialiased">
+<body class="bg-slate-900 min-h-screen flex items-center justify-center overflow-hidden p-0 md:p-4">
 
-  <!-- HEADER PRINCIPAL -->
-  <header class="w-full bg-white border-b border-slate-200 py-4 px-6 sticky top-0 z-50 shadow-sm">
-    <div class="max-w-6xl mx-auto flex items-center justify-between">
-      <div class="flex items-center space-x-3">
-        <div class="bg-teal-500 text-white p-2.5 rounded-2xl shadow-lg shadow-teal-500/20">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-          </svg>
-        </div>
-        <div>
-          <h1 class="text-xl font-extrabold tracking-tight text-slate-900 flex items-center gap-2">
-            FumiMat <span class="text-xs bg-teal-500/10 text-teal-700 px-2.5 py-0.5 rounded-full border border-teal-500/20 font-semibold">Semestral</span>
-          </h1>
-          <p class="text-xs text-slate-500 font-medium">Control de Servicios & Cobros de Fumigación</p>
-        </div>
-      </div>
-      <div class="flex items-center space-x-3">
-        <span class="hidden md:inline-flex text-xs bg-slate-100 text-slate-600 font-bold px-3 py-1.5 rounded-xl border border-slate-200 items-center gap-1.5">
-          <span class="w-2 h-2 rounded-full bg-teal-500 inline-block animate-pulse"></span>
-          Paraguay • Gs. (₲)
-        </span>
-        <a href="#github-guide" class="text-xs bg-teal-500 hover:bg-teal-600 text-white font-bold px-4 py-2.5 rounded-xl transition-all-300 shadow-sm">
-          Guía GitHub 🚀
-        </a>
-      </div>
-    </div>
-  </header>
-
-  <!-- CONTENEDOR DE PANTALLAS (MOCKUPS DE CELULAR - FIDELIDAD A IMG_1908.JPG) -->
-  <main class="flex-1 w-full max-w-6xl mx-auto px-4 py-8 md:py-12 flex flex-col items-center justify-center gap-10">
+  <!-- CONTENEDOR PRINCIPAL: SIMULADOR DE SMARTPHONE -->
+  <!-- En móviles es pantalla completa, en PC se muestra centrado como un iPhone/Android -->
+  <div class="w-full h-screen md:h-[840px] md:max-w-[400px] bg-white md:rounded-[48px] md:shadow-2xl overflow-hidden flex flex-col justify-between relative md:border-[10px] md:border-slate-950 md:ring-4 md:ring-slate-800">
     
-    <!-- Banner informativo -->
-    <div class="text-center max-w-xl">
-      <h2 class="text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">Panel de Control FumiMat</h2>
-      <p class="mt-2 text-sm text-slate-500 leading-relaxed">
-        Inspirado en el diseño limpio y moderno de la imagen <span class="font-mono text-teal-600">IMG_1908.JPG</span>. Gestión integral para dispositivos móviles iOS y Android.
-      </p>
-    </div>
-
-    <!-- Layout de Doble Dispositivo Inteligente -->
-    <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 justify-center items-start max-w-4xl">
+    <!-- CUERPO DE LAS PANTALLAS (Scroll interno e independiente) -->
+    <div class="flex-1 overflow-y-auto no-scrollbar bg-white relative pb-24">
       
-      <!-- DISPOSITIVO 1: PANTALLA DASHBOARD (MOCKUP IZQUIERDO) -->
-      <div class="bg-black p-4 rounded-[48px] shadow-2xl border-4 border-slate-800 relative ring-1 ring-slate-700 max-w-[380px] mx-auto w-full transition-all duration-300 hover:shadow-teal-500/5">
-        <!-- Cámara / Notch de celular -->
-        <div class="absolute top-6 left-1/2 -translate-x-1/2 w-32 h-5 bg-black rounded-full z-20 flex items-center justify-center gap-1">
-          <div class="w-3 h-3 rounded-full bg-slate-900"></div>
-          <div class="w-12 h-1 bg-slate-850 rounded"></div>
-        </div>
+      <!-- PANTALLA 1: INICIO (DASHBOARD) -->
+      <div id="screen-dashboard" class="view-transition px-6 pt-6 space-y-5">
         
-        <!-- Pantalla de la aplicación (Fondo blanco idéntico a la imagen) -->
-        <div class="bg-white text-slate-900 rounded-[38px] overflow-hidden min-h-[720px] flex flex-col justify-between pt-8 pb-4 relative shadow-inner">
+        <!-- Perfil de usuario y botón de calendario -->
+        <div class="flex justify-between items-center">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-teal-500 to-emerald-500 flex items-center justify-center text-white font-black text-sm shadow-md shadow-teal-500/20">
+              FM
+            </div>
+            <div>
+              <p class="text-[10px] text-slate-400 font-bold uppercase leading-none">Administrador</p>
+              <h2 class="text-sm font-black text-slate-800 mt-1">FumiMat Paraguay</h2>
+            </div>
+          </div>
+          <button onclick="goToTab('add')" class="w-9 h-9 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-700 active:scale-95 transition-transform">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" /></svg>
+          </button>
+        </div>
+
+        <!-- TARJETA PREMIUM DE INGRESOS (Estilo IMG_1908.JPG) -->
+        <div class="bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white rounded-[24px] p-5 shadow-xl relative overflow-hidden">
+          <div class="absolute right-0 top-0 w-24 h-24 bg-teal-500/10 rounded-full filter blur-xl"></div>
+          <span class="text-[10px] font-bold tracking-wider text-teal-400 uppercase">Ingreso Total Histórico</span>
+          <h3 id="display-total-income" class="text-2xl font-black mt-1 tracking-tight">₲ 0</h3>
           
-          <!-- Contenido superior -->
-          <div class="px-6 pt-4 flex-1 flex flex-col justify-between">
-            
-            <!-- Perfil e Ícono Calendario -->
-            <div class="flex justify-between items-center mb-5">
-              <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-slate-900 to-slate-700 flex items-center justify-center text-white font-black text-sm border-2 border-white shadow-md">
-                  FM
-                </div>
-                <div>
-                  <p class="text-[10px] text-slate-400 font-semibold leading-none">¡Hola, Administrador!</p>
-                  <h3 class="text-xs font-bold text-slate-800 mt-1">FumiMat Paraguay</h3>
-                </div>
-              </div>
-              <button onclick="switchScreen('form')" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-700 transition-colors" title="Registrar nuevo servicio">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" /></svg>
-              </button>
+          <div class="mt-4 pt-4 border-t border-white/10 flex justify-between items-center">
+            <div>
+              <span class="text-[9px] text-slate-400 block uppercase font-bold" id="month-income-label">Cobrado este Mes</span>
+              <span id="display-month-income" class="text-sm font-black text-white">₲ 0</span>
             </div>
-
-            <!-- Manage your payments Card (Inspirado en IMG_1908.JPG) -->
-            <div class="mb-4">
-              <span class="text-xs text-slate-400 font-bold tracking-tight block">Administrar</span>
-              <h2 class="text-xl font-extrabold text-slate-950 tracking-tight leading-tight">Servicios de Fumigación</h2>
-              
-              <!-- Tarjeta de Ingreso Total -->
-              <div class="bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white rounded-2xl p-5 mt-3 shadow-lg relative overflow-hidden">
-                <div class="absolute right-0 top-0 w-24 h-24 bg-teal-500/10 rounded-full filter blur-xl"></div>
-                <p class="text-[10px] font-bold tracking-wider text-teal-400 uppercase">Ingreso Total Histórico</p>
-                <h3 id="display-total-income" class="text-2xl font-black mt-1 tracking-tight">₲ 0</h3>
-                <div class="mt-4 pt-3 border-t border-white/10 flex justify-between items-center">
-                  <div>
-                    <span class="text-[9px] text-slate-400 block uppercase font-bold">Cobrado este Mes</span>
-                    <span id="display-month-income" class="text-xs font-bold text-white">₲ 0</span>
-                  </div>
-                  <button onclick="switchScreen('form')" class="bg-white hover:bg-teal-50 text-slate-950 font-bold text-[10px] px-3.5 py-1.5 rounded-xl transition-all-300 shadow">
-                    Nuevo Registro
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Spending Overview Chart (Inspirado en la barra interactiva de IMG_1908.JPG) -->
-            <div class="mb-4">
-              <div class="flex justify-between items-center mb-2">
-                <h4 class="text-xs font-black text-slate-900 uppercase tracking-wider">Flujo de Ingresos</h4>
-                <span class="text-[9px] text-slate-400 font-bold" id="selected-filter-label">Todos los meses</span>
-              </div>
-              
-              <!-- Gráfico interactivo -->
-              <div class="bg-slate-50 border border-slate-200/60 rounded-xl p-3 flex justify-between items-end h-20 relative">
-                <!-- Barras de los últimos meses -->
-                <div onclick="filterByMonth('2026-01')" class="group cursor-pointer flex flex-col items-center flex-1 h-full justify-end">
-                  <div class="w-6 bg-slate-200 hover:bg-teal-500/45 rounded-t h-[20%] transition-all-300 relative" id="bar-2026-01"></div>
-                  <span class="text-[9px] font-bold text-slate-400 mt-1">Ene</span>
-                </div>
-
-                <div onclick="filterByMonth('2026-02')" class="group cursor-pointer flex flex-col items-center flex-1 h-full justify-end">
-                  <div class="w-6 bg-slate-200 hover:bg-teal-500/45 rounded-t h-[45%] transition-all-300 relative" id="bar-2026-02"></div>
-                  <span class="text-[9px] font-bold text-slate-400 mt-1">Feb</span>
-                </div>
-
-                <div onclick="filterByMonth('2026-03')" class="group cursor-pointer flex flex-col items-center flex-1 h-full justify-end">
-                  <div class="w-6 bg-slate-200 hover:bg-teal-500/45 rounded-t h-[15%] transition-all-300 relative" id="bar-2026-03"></div>
-                  <span class="text-[9px] font-bold text-slate-400 mt-1">Mar</span>
-                </div>
-
-                <div onclick="filterByMonth('2026-04')" class="group cursor-pointer flex flex-col items-center flex-1 h-full justify-end">
-                  <div class="w-6 bg-slate-200 hover:bg-teal-500/45 rounded-t h-[65%] transition-all-300 relative" id="bar-2026-04"></div>
-                  <span class="text-[9px] font-bold text-slate-400 mt-1">Abr</span>
-                </div>
-
-                <div onclick="filterByMonth('2026-05')" class="group cursor-pointer flex flex-col items-center flex-1 h-full justify-end">
-                  <div class="w-6 bg-slate-900 rounded-t h-[95%] transition-all-300 relative" id="bar-2026-05">
-                    <div class="absolute inset-0 bg-gradient-to-t from-teal-600 to-teal-400 rounded-t"></div>
-                  </div>
-                  <span class="text-[9px] font-bold text-slate-900 mt-1 font-extrabold">May</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- NUEVA SECCIÓN: Próximos Servicios a Realizar (Fumigaciones Semestrales Ordenadas) -->
-            <div class="mb-4">
-              <h4 class="text-xs font-black text-slate-900 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-indigo-500 inline-block animate-pulse"></span>
-                Próximas Fumigaciones
-              </h4>
-              <div id="upcoming-services-container" class="space-y-1.5 max-h-[105px] overflow-y-auto no-scrollbar">
-                <!-- Se inyecta dinámicamente mediante JavaScript -->
-              </div>
-            </div>
-
-            <!-- Lista de Locales (Active Subscriptions) -->
-            <div class="flex-1 flex flex-col">
-              <div class="flex justify-between items-center mb-2">
-                <h4 class="text-xs font-black text-slate-900 uppercase tracking-wider">Locales Registrados</h4>
-                <button onclick="clearMonthFilter()" id="btn-clear-filter" class="text-[9px] text-rose-500 font-bold hidden hover:underline">Quitar Filtro</button>
-              </div>
-
-              <!-- Input de Búsqueda -->
-              <div class="relative mb-3">
-                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400 pointer-events-none">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-                </span>
-                <input
-                  type="text"
-                  id="search-input"
-                  placeholder="Buscar cliente o local..."
-                  onkeyup="renderServices()"
-                  class="w-full pl-8 pr-3 py-1.5 bg-slate-100 border border-slate-200 rounded-xl text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all-300"
-                />
-              </div>
-
-              <!-- Contenedor dinámico de servicios -->
-              <div id="services-list-container" class="space-y-2 overflow-y-auto max-h-[130px] no-scrollbar pr-1">
-                <!-- Se inyecta por JS -->
-              </div>
-            </div>
-
-          </div>
-
-          <!-- Navegación inferior ficticia del celular -->
-          <div class="mt-4 pt-3 border-t border-slate-100 flex justify-around items-center text-slate-400 text-xs">
-            <button onclick="switchScreen('detail')" class="flex flex-col items-center text-teal-600 font-bold">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4zM14 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2v-4z" /></svg>
-              <span class="text-[8px] mt-0.5">Inicio</span>
-            </button>
-            <button onclick="switchScreen('form')" class="flex flex-col items-center hover:text-slate-900 transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-              <span class="text-[8px] mt-0.5">Añadir</span>
+            <button onclick="goToTab('add')" class="bg-white text-slate-950 font-bold text-[10px] px-3.5 py-2 rounded-xl active:scale-95 transition-transform shadow-md">
+              Nuevo Registro
             </button>
           </div>
         </div>
-      </div>
 
-      <!-- DISPOSITIVO 2: PANTALLA DETALLE / REGISTRO (MOCKUP DERECHO) -->
-      <div class="bg-black p-4 rounded-[48px] shadow-2xl border-4 border-slate-800 relative ring-1 ring-slate-700 max-w-[380px] mx-auto w-full transition-all duration-300 hover:shadow-teal-500/5">
-        <!-- Cámara / Notch de celular -->
-        <div class="absolute top-6 left-1/2 -translate-x-1/2 w-32 h-5 bg-black rounded-full z-20 flex items-center justify-center gap-1">
-          <div class="w-3 h-3 rounded-full bg-slate-900"></div>
-          <div class="w-12 h-1 bg-slate-850 rounded"></div>
-        </div>
-
-        <!-- Pantalla de la aplicación -->
-        <div class="bg-white text-slate-900 rounded-[38px] overflow-hidden min-h-[720px] flex flex-col justify-between pt-8 pb-4 relative shadow-inner">
-          
-          <!-- CONTENIDO VARIABLES DEPENDIENDO DEL ESTADO (DETALLES O REGISTRO) -->
-          <div class="px-6 pt-4 flex-1 flex flex-col">
-            
-            <!-- Vista 2A: Detalles del Servicio Seleccionado -->
-            <div id="screen-detail" class="flex-1 flex flex-col justify-between">
-              <div>
-                <!-- Header del Local -->
-                <div class="flex justify-between items-center mb-6">
-                  <button onclick="switchScreen('form')" class="text-xs font-bold text-teal-600 bg-teal-50 px-3 py-1.5 rounded-xl hover:bg-teal-100 transition-colors">
-                    + Registrar Nuevo
-                  </button>
-                  <h3 id="detail-title-top" class="text-xs font-black text-slate-800 uppercase tracking-widest">Detalle</h3>
-                  <button onclick="deleteSelectedService()" class="text-rose-500 hover:bg-rose-50 p-2 rounded-xl transition-colors" title="Eliminar registro">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
-                  </button>
-                </div>
-
-                <!-- Detalle Principal (Logo & Nombre) -->
-                <div class="bg-slate-50 border border-slate-200/50 rounded-2xl p-4 flex items-center space-x-4 mb-4">
-                  <div id="detail-logo-container" class="w-14 h-14 rounded-2xl bg-teal-500 text-white flex items-center justify-center font-black text-xl shadow-md">
-                    S
-                  </div>
-                  <div>
-                    <h4 id="detail-local-name" class="text-sm font-extrabold text-slate-950 truncate max-w-[180px]">Supermercado Central</h4>
-                    <span id="detail-local-type" class="text-[9px] bg-teal-500/10 text-teal-700 border border-teal-500/20 font-black px-2 py-0.5 rounded-full uppercase">COMERCIAL</span>
-                    <p id="detail-client-name" class="text-xs text-slate-400 mt-1 font-semibold truncate max-w-[180px]">Cliente: Wahid Cáceres</p>
-                  </div>
-                </div>
-
-                <!-- Especificaciones Técnicas del Plan Semestral -->
-                <div class="space-y-1 mb-4">
-                  <h5 class="text-[10px] font-black text-slate-400 uppercase tracking-wider mb-2">Especificaciones de Servicio</h5>
-                  <div class="bg-slate-50 border border-slate-200/50 rounded-2xl p-4 divide-y divide-slate-200/40 text-[11px]">
-                    <div class="py-2.5 flex justify-between items-center first:pt-0">
-                      <span class="font-bold text-slate-500">Próximo servicio en:</span>
-                      <span id="detail-remaining-days" class="font-extrabold px-3 py-1 rounded-full text-[10px] bg-indigo-50 text-indigo-700 border border-indigo-100">12 días</span>
-                    </div>
-                    <div class="py-2.5 flex justify-between items-center">
-                      <span class="font-bold text-slate-500">Último servicio:</span>
-                      <span id="detail-payment-date" class="font-extrabold text-slate-800">15 May, 2026</span>
-                    </div>
-                    <div class="py-2.5 flex justify-between items-center">
-                      <span class="font-bold text-slate-500">Siguiente servicio (6m):</span>
-                      <span id="detail-next-date" class="font-extrabold text-indigo-700 flex items-center gap-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                        <span>15 Nov, 2026</span>
-                      </span>
-                    </div>
-                    <div class="py-2.5 flex justify-between items-center last:pb-0">
-                      <span class="font-bold text-slate-500">Frecuencia del Plan:</span>
-                      <span class="font-extrabold text-slate-800 bg-slate-200/60 px-2 py-0.5 rounded-full text-[9px]">Semestral</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Historial de cobro / Billing history -->
-                <div class="mb-4">
-                  <h5 class="text-[10px] font-black text-slate-400 uppercase tracking-wider mb-2">Historial de Cobros</h5>
-                  <div id="detail-billing-history" class="space-y-2 max-h-[110px] overflow-y-auto no-scrollbar">
-                    <!-- Se inyecta dinámicamente -->
-                  </div>
-                </div>
-
-                <!-- Observaciones -->
-                <div>
-                  <h5 class="text-[10px] font-black text-slate-400 uppercase tracking-wider mb-1">Notas de Inspección</h5>
-                  <div id="detail-notes" class="bg-amber-50 border border-amber-100 rounded-xl p-3 text-[11px] text-amber-900 leading-relaxed font-medium">
-                    Tratamiento completo anti-plagas semestral en depósito principal y salones.
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Vista 2B: Formulario de Registro de Nuevo Servicio -->
-            <div id="screen-form" class="flex-1 flex flex-col justify-between hidden">
-              <div>
-                <div class="flex justify-between items-center mb-4">
-                  <button onclick="switchScreen('detail')" class="text-xs font-bold text-slate-500 hover:text-slate-800 transition-colors">
-                    Cancelar
-                  </button>
-                  <h3 class="text-xs font-black text-slate-800 uppercase tracking-widest">Nuevo Registro</h3>
-                  <div class="w-8 h-8"></div>
-                </div>
-
-                <form onsubmit="handleFormSubmit(event)" class="space-y-3 text-xs">
-                  <div>
-                    <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Nombre del Local *</label>
-                    <input type="text" id="form-local-name" required placeholder="Ej. Farmatotal, Residencia Silva" class="w-full px-3 py-2 border border-slate-200 rounded-xl font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all-300">
-                  </div>
-
-                  <div>
-                    <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Nombre del Propietario / Cliente *</label>
-                    <input type="text" id="form-client-name" required placeholder="Ej. Juan Pérez" class="w-full px-3 py-2 border border-slate-200 rounded-xl font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all-300">
-                  </div>
-
-                  <div class="grid grid-cols-2 gap-3">
-                    <div>
-                      <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Tipo de Local</label>
-                      <select id="form-local-type" class="w-full px-3 py-2 border border-slate-200 rounded-xl font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 bg-white">
-                        <option value="Comercial">Comercial</option>
-                        <option value="Residencial">Residencial</option>
-                        <option value="Industrial">Industrial</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Fecha de Pago *</label>
-                      <input type="date" id="form-payment-date" required class="w-full px-3 py-2 border border-slate-200 rounded-xl font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500">
-                    </div>
-                  </div>
-
-                  <!-- MONTO CON MÁSCARA DE MILES DINÁMICA CON PUNTOS -->
-                  <div class="grid grid-cols-2 gap-3">
-                    <div>
-                      <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Monto en Gs. (₲) *</label>
-                      <!-- Se usa type="text" para poder insertar los puntos dinámicamente -->
-                      <input 
-                        type="text" 
-                        id="form-amount" 
-                        required 
-                        placeholder="Monto con puntos" 
-                        oninput="formatInputWithDots(this)"
-                        class="w-full px-3 py-2 border border-slate-200 rounded-xl font-black text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 placeholder-slate-400"
-                      >
-                    </div>
-                    <div>
-                      <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Método de Pago</label>
-                      <select id="form-payment-method" class="w-full px-3 py-2 border border-slate-200 rounded-xl font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 bg-white">
-                        <option value="Efectivo">Efectivo</option>
-                        <option value="Factura a crédito">Factura a crédito</option>
-                        <option value="Transferencia bancaria">Transferencia bancaria</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div>
-                    <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Notas y Observaciones</label>
-                    <textarea id="form-notes" rows="2" placeholder="Químicos aplicados, barrera química..." class="w-full px-3 py-2 border border-slate-200 rounded-xl font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all-300"></textarea>
-                  </div>
-
-                  <!-- Información Automática -->
-                  <div class="p-3 bg-indigo-50 border border-indigo-100 rounded-xl text-[10px] font-semibold text-indigo-800 leading-relaxed">
-                    💡 <strong>Cálculo Automático:</strong> La próxima fumigación se programará de manera automática para 6 meses después de la fecha registrada.
-                  </div>
-
-                  <button type="submit" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-extrabold py-3 rounded-xl transition-all duration-200 shadow-md shadow-teal-700/10 active:scale-95">
-                    Registrar Servicio
-                  </button>
-                </form>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- Navegación inferior ficticia del celular -->
-          <div class="mt-4 pt-3 border-t border-slate-100 flex justify-around items-center text-slate-400 text-xs">
-            <button onclick="switchScreen('detail')" class="flex flex-col items-center hover:text-slate-900 transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4zM14 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2v-4z" /></svg>
-              <span class="text-[8px] mt-0.5">Inicio</span>
-            </button>
-            <button onclick="switchScreen('form')" class="flex flex-col items-center text-teal-600 font-bold">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-              <span class="text-[8px] mt-0.5">Añadir</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-  </main>
-
-  <!-- GUÍA DE SUBIDA A GITHUB -->
-  <section id="github-guide" class="bg-slate-900 border-t border-slate-800 py-12 px-6">
-    <div class="max-w-4xl mx-auto space-y-6 text-slate-300 text-xs">
-      <div class="flex items-center space-x-3 mb-4">
-        <div class="bg-teal-500/10 text-teal-400 p-2.5 rounded-xl border border-teal-500/20">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-          </svg>
-        </div>
+        <!-- GRÁFICO DE FLUJO DE INGRESOS MENSUALES -->
         <div>
-          <h3 class="text-base font-black text-white">Publica tu App FumiMat gratis en la Nube con GitHub Pages</h3>
-          <p class="text-slate-400">Sigue estos pasos rápidos para poder acceder a la herramienta desde tu celular iOS o Android.</p>
+          <div class="flex justify-between items-baseline mb-2">
+            <h4 class="text-[11px] font-black text-slate-900 uppercase tracking-wider">Flujo de Ingresos</h4>
+            <span class="text-[10px] text-slate-400 font-bold" id="selected-filter-label">Todos los meses</span>
+          </div>
+          
+          <div class="bg-slate-50 border border-slate-200/50 rounded-2xl p-3 flex justify-between items-end h-24 relative">
+            <!-- Barra Enero -->
+            <div onclick="filterByMonth('2026-01')" class="group cursor-pointer flex flex-col items-center flex-1 h-full justify-end">
+              <div class="w-6 bg-slate-200 hover:bg-teal-500/30 rounded-t h-[20%] transition-all duration-300 relative" id="bar-2026-01"></div>
+              <span class="text-[9px] font-bold text-slate-400 mt-1">Ene</span>
+            </div>
+            <!-- Barra Febrero -->
+            <div onclick="filterByMonth('2026-02')" class="group cursor-pointer flex flex-col items-center flex-1 h-full justify-end">
+              <div class="w-6 bg-slate-200 hover:bg-teal-500/30 rounded-t h-[45%] transition-all duration-300 relative" id="bar-2026-02"></div>
+              <span class="text-[9px] font-bold text-slate-400 mt-1">Feb</span>
+            </div>
+            <!-- Barra Marzo -->
+            <div onclick="filterByMonth('2026-03')" class="group cursor-pointer flex flex-col items-center flex-1 h-full justify-end">
+              <div class="w-6 bg-slate-200 hover:bg-teal-500/30 rounded-t h-[15%] transition-all duration-300 relative" id="bar-2026-03"></div>
+              <span class="text-[9px] font-bold text-slate-400 mt-1">Mar</span>
+            </div>
+            <!-- Barra Abril -->
+            <div onclick="filterByMonth('2026-04')" class="group cursor-pointer flex flex-col items-center flex-1 h-full justify-end">
+              <div class="w-6 bg-slate-200 hover:bg-teal-500/30 rounded-t h-[65%] transition-all duration-300 relative" id="bar-2026-04"></div>
+              <span class="text-[9px] font-bold text-slate-400 mt-1">Abr</span>
+            </div>
+            <!-- Barra Mayo -->
+            <div onclick="filterByMonth('2026-05')" class="group cursor-pointer flex flex-col items-center flex-1 h-full justify-end">
+              <div class="w-6 bg-slate-900 rounded-t h-[95%] transition-all duration-300 relative" id="bar-2026-05">
+                <div class="absolute inset-0 bg-gradient-to-t from-teal-600 to-teal-400 rounded-t"></div>
+              </div>
+              <span class="text-[9px] font-bold text-slate-900 mt-1 font-extrabold">May</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRÓXIMOS SERVICIOS SEMESTRALES -->
+        <div>
+          <h4 class="text-[11px] font-black text-slate-900 uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-indigo-500 inline-block animate-pulse"></span>
+            Próximas Fumigaciones
+          </h4>
+          <div id="upcoming-services-container" class="space-y-2 max-h-[140px] overflow-y-auto no-scrollbar">
+            <!-- Se inyecta por JavaScript -->
+          </div>
+        </div>
+
+        <!-- LISTA DE LOCALES REGISTRADOS -->
+        <div class="space-y-3">
+          <div class="flex justify-between items-center">
+            <h4 class="text-[11px] font-black text-slate-900 uppercase tracking-wider">Locales Registrados</h4>
+            <button onclick="clearMonthFilter()" id="btn-clear-filter" class="text-[9px] text-rose-500 font-bold hidden hover:underline">Quitar Filtro</button>
+          </div>
+
+          <!-- Input de Búsqueda -->
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400 pointer-events-none">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+            </span>
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Buscar cliente o local..."
+              onkeyup="renderServices()"
+              class="w-full pl-8 pr-3 py-2 bg-slate-100 border border-slate-200/60 rounded-xl text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all"
+            />
+          </div>
+
+          <!-- Contenedor dinámico de servicios -->
+          <div id="services-list-container" class="space-y-2 max-h-[220px] overflow-y-auto no-scrollbar pb-4">
+            <!-- Se inyecta por JS -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- PANTALLA 2: AÑADIR (NUEVO REGISTRO) -->
+      <div id="screen-add" class="view-transition px-6 pt-6 space-y-4 hidden">
+        <div class="text-center pb-1">
+          <h3 class="text-base font-black text-slate-900">Registrar FumiMat</h3>
+          <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mt-0.5">Fumigación Semestral</p>
+        </div>
+
+        <form onsubmit="handleFormSubmit(event)" class="space-y-3.5 text-xs">
+          <div>
+            <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Nombre del Local *</label>
+            <input type="text" id="form-local-name" required placeholder="Ej. Farmatotal, Residencia Silva" class="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all">
+          </div>
+
+          <div>
+            <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Nombre del Propietario / Cliente *</label>
+            <input type="text" id="form-client-name" required placeholder="Ej. Wahid Cáceres" class="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all">
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Tipo de Local</label>
+              <select id="form-local-type" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 bg-white">
+                <option value="Comercial">Comercial</option>
+                <option value="Residencial">Residencial</option>
+                <option value="Industrial">Industrial</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Fecha de Pago *</label>
+              <input type="date" id="form-payment-date" required class="w-full px-3 py-2.5 border border-slate-200 rounded-xl font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Monto en Gs. (₲) *</label>
+              <input 
+                type="text" 
+                id="form-amount" 
+                required 
+                placeholder="Ej. 1.500.000" 
+                oninput="formatInputWithDots(this)"
+                class="w-full px-3 py-2.5 border border-slate-200 rounded-xl font-black text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500"
+              >
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Método de Pago</label>
+              <select id="form-payment-method" class="w-full px-3 py-2.5 border border-slate-200 rounded-xl font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 bg-white">
+                <option value="Efectivo">Efectivo</option>
+                <option value="Factura a crédito">Factura a crédito</option>
+                <option value="Transferencia bancaria">Transferencia bancaria</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">Notas y Observaciones</label>
+            <textarea id="form-notes" rows="2" placeholder="Químicos aplicados, barrera física..." class="w-full px-3 py-2.5 border border-slate-200 rounded-xl font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all"></textarea>
+          </div>
+
+          <div class="p-3 bg-indigo-50 border border-indigo-100 rounded-xl text-[10px] font-semibold text-indigo-800 leading-relaxed">
+            💡 <strong>Plan Semestral:</strong> Próxima fumigación agendada de manera automática 6 meses después del pago.
+          </div>
+
+          <button type="submit" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-extrabold py-3.5 rounded-xl transition-all shadow-md shadow-teal-700/10 active:scale-[0.98]">
+            Registrar Servicio
+          </button>
+        </form>
+      </div>
+
+      <!-- PANTALLA 3: DETALLE (VISUALIZACIÓN TÉCNICA) -->
+      <div id="screen-detail" class="view-transition px-6 pt-6 space-y-5 hidden">
+        <div class="flex justify-between items-center">
+          <h3 class="text-sm font-black text-slate-800 uppercase tracking-widest">Detalle</h3>
+          <button onclick="deleteSelectedService()" class="text-rose-500 hover:bg-rose-50 p-2 rounded-xl transition-colors" title="Eliminar registro">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+          </button>
+        </div>
+
+        <!-- Detalle Principal (Logo & Nombre) -->
+        <div class="bg-slate-50 border border-slate-200/50 rounded-2xl p-4 flex items-center space-x-4">
+          <div id="detail-logo-container" class="w-12 h-12 rounded-2xl bg-teal-500 text-white flex items-center justify-center font-black text-lg shadow-md">
+            S
+          </div>
+          <div class="min-w-0">
+            <h4 id="detail-local-name" class="text-xs font-extrabold text-slate-950 truncate max-w-[180px]">Supermercado Central</h4>
+            <span id="detail-local-type" class="text-[9px] bg-teal-500/10 text-teal-700 border border-teal-500/20 font-black px-2 py-0.5 rounded-full uppercase">COMERCIAL</span>
+            <p id="detail-client-name" class="text-[10px] text-slate-400 mt-1 font-semibold truncate">Cliente: Wahid Cáceres</p>
+          </div>
+        </div>
+
+        <!-- Especificaciones Técnicas -->
+        <div class="space-y-1">
+          <h5 class="text-[10px] font-black text-slate-400 uppercase tracking-wider">Especificaciones</h5>
+          <div class="bg-slate-50 border border-slate-200/50 rounded-2xl p-4 divide-y divide-slate-200/40 text-[11px]">
+            <div class="py-2.5 flex justify-between items-center first:pt-0">
+              <span class="font-bold text-slate-500">Próximo servicio en:</span>
+              <span id="detail-remaining-days" class="font-extrabold px-3 py-1 rounded-full text-[10px] bg-indigo-50 text-indigo-700 border border-indigo-100">12 días</span>
+            </div>
+            <div class="py-2.5 flex justify-between items-center">
+              <span class="font-bold text-slate-500">Último servicio:</span>
+              <span id="detail-payment-date" class="font-extrabold text-slate-800">15 May, 2026</span>
+            </div>
+            <div class="py-2.5 flex justify-between items-center">
+              <span class="font-bold text-slate-500">Próximo servicio:</span>
+              <span id="detail-next-date" class="font-extrabold text-indigo-700 flex items-center gap-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                <span>15 Nov, 2026</span>
+              </span>
+            </div>
+            <div class="py-2.5 flex justify-between items-center last:pb-0">
+              <span class="font-bold text-slate-500">Frecuencia del Plan:</span>
+              <span class="font-extrabold text-slate-800 bg-slate-200/60 px-2.5 py-0.5 rounded-full text-[9px]">Semestral</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Historial de cobros -->
+        <div class="space-y-2">
+          <h5 class="text-[10px] font-black text-slate-400 uppercase tracking-wider">Historial de Cobros</h5>
+          <div id="detail-billing-history" class="space-y-2 max-h-[140px] overflow-y-auto no-scrollbar">
+            <!-- Se inyecta dinámicamente -->
+          </div>
+        </div>
+
+        <!-- Observaciones -->
+        <div class="space-y-2">
+          <h5 class="text-[10px] font-black text-slate-400 uppercase tracking-wider">Notas de Inspección</h5>
+          <div id="detail-notes" class="bg-amber-50 border border-amber-100 rounded-xl p-3.5 text-[11px] text-amber-900 leading-relaxed font-medium">
+            Tratamiento completo anti-plagas semestral en depósito principal y salones.
+          </div>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 leading-relaxed">
-        <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-3">
-          <h4 class="font-bold text-teal-400 text-sm">Paso 1: Preparar tu repositorio</h4>
-          <ol class="list-decimal list-inside space-y-2">
-            <li>Crea una cuenta en <a href="https://github.com" target="_blank" class="text-white hover:underline font-bold">GitHub</a>.</li>
-            <li>Crea un nuevo repositorio público llamado <code class="bg-slate-900 px-1.5 py-0.5 rounded text-rose-400 font-mono">fumimat</code>.</li>
-            <li>Haz clic en <strong>"Create new file"</strong> para crear un archivo en el repositorio.</li>
-            <li>Nómbralo exactamente como <code class="bg-slate-900 px-1.5 py-0.5 rounded text-teal-400 font-mono">index.html</code>.</li>
-            <li>Pega todo el código de este archivo dentro y haz clic en <strong>"Commit changes..."</strong>.</li>
-          </ol>
-        </div>
-
-        <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-3">
-          <h4 class="font-bold text-teal-400 text-sm">Paso 2: Activar el hosting gratuito</h4>
-          <ol class="list-decimal list-inside space-y-2">
-            <li>Dentro de tu repositorio en GitHub, ve a la pestaña <strong>Settings</strong> (Configuración) arriba.</li>
-            <li>En la barra lateral izquierda, haz clic en la sección <strong>Pages</strong>.</li>
-            <li>Bajo la opción <em>Build and deployment</em>, selecciona la rama <strong>main</strong> (o master) y el directorio <code class="bg-slate-900 px-1 py-0.5 rounded text-slate-400">/ (root)</code>.</li>
-            <li>Presiona <strong>Save</strong> (Guardar).</li>
-            <li>¡Listo! En unos minutos obtendrás tu dirección web pública para guardarla como ícono en la pantalla de inicio de tu smartphone.</li>
-          </ol>
-        </div>
-      </div>
     </div>
-  </section>
 
-  <!-- PIE DE PÁGINA -->
-  <footer class="bg-slate-900 border-t border-slate-950 py-6 px-6 text-center text-xs text-slate-500 font-medium">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-      <p>© 2026 FumiMat Paraguay. Diseñado para un control simplificado y seguro.</p>
-      <div class="flex space-x-4">
-        <span>Moneda: Guaraníes (₲)</span>
-        <span>•</span>
-        <span>Servicios Semestrales</span>
-      </div>
+    <!-- BARRA DE NAVEGACIÓN INFERIOR (Estilo iOS/Android Native App) -->
+    <div class="absolute bottom-0 left-0 right-0 h-16 bg-white border-t border-slate-100 flex justify-around items-center px-4 z-50">
+      
+      <!-- Tab Inicio -->
+      <button onclick="goToTab('dashboard')" id="tab-dashboard" class="flex flex-col items-center justify-center flex-1 py-1 text-teal-600 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
+        <span class="text-[10px] mt-1 font-bold tracking-tight">Inicio</span>
+      </button>
+
+      <!-- Tab Añadir -->
+      <button onclick="goToTab('add')" id="tab-add" class="flex flex-col items-center justify-center flex-1 py-1 text-slate-400 hover:text-slate-900 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span class="text-[10px] mt-1 font-semibold tracking-tight">Añadir</span>
+      </button>
+
+      <!-- Tab Detalle -->
+      <button onclick="goToTab('detail')" id="tab-detail" class="flex flex-col items-center justify-center flex-1 py-1 text-slate-400 hover:text-slate-900 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+        <span class="text-[10px] mt-1 font-semibold tracking-tight">Detalle</span>
+      </button>
+
     </div>
-  </footer>
 
-  <!-- LÓGICA JAVASCRIPT - RENDERS, CÁLCULOS Y PERSISTENCIA -->
+  </div>
+
+  <!-- LÓGICA DE PROGRAMACIÓN (PERSISTENCIA Y CÁLCULOS) -->
   <script>
-    // Datos de ejemplo iniciales con nombres de métodos actualizados
-    const INITIAL_SERVICES = [
+    // Datos iniciales de prueba (Fieles al monto e información de IMG_1908.JPG)
+    const DEFAULT_SERVICES = [
       {
         id: '1',
         clientName: 'Wahid Cáceres',
@@ -509,43 +377,40 @@
       }
     ];
 
-    // Carga de datos de LocalStorage o inicialización
-    let services = JSON.parse(localStorage.getItem('fumimat_services_db')) || INITIAL_SERVICES;
+    // Cargar información de base de datos local
+    let services = JSON.parse(localStorage.getItem('fumimat_app_db')) || DEFAULT_SERVICES;
     let selectedId = services[0]?.id || null;
-    let selectedMonth = null; // Filtro de mes activo
+    let selectedMonth = null; 
 
-    // Establecer la fecha actual en el formulario por defecto
+    // Establecer fecha por defecto del formulario en la fecha de hoy
     document.getElementById('form-payment-date').value = new Date().toISOString().split('T')[0];
 
-    // Guardar cambios en LocalStorage
+    // Guardar cambios en el almacenamiento local del dispositivo
     function saveToStorage() {
-      localStorage.setItem('fumimat_services_db', JSON.stringify(services));
+      localStorage.setItem('fumimat_app_db', JSON.stringify(services));
     }
 
-    // Formateador de Guaraníes
+    // Formateador de moneda de Guaraníes
     function formatGuarani(value) {
       return '₲ ' + Math.round(value).toLocaleString('es-PY');
     }
 
-    // MÁSCARA EN TIEMPO REAL CON PUNTOS DE MILES
+    // Formateador dinámico para el campo de entrada (input)
     function formatInputWithDots(input) {
-      // Remover todo lo que no sea número
       let rawValue = input.value.replace(/\D/g, "");
       if (rawValue === "") {
         input.value = "";
         return;
       }
-      // Formatear valor numérico con puntos locales
-      let formatted = parseInt(rawValue, 10).toLocaleString('es-PY');
-      input.value = formatted;
+      input.value = parseInt(rawValue, 10).toLocaleString('es-PY');
     }
 
-    // Convertir de formato con puntos a entero limpio
+    // Limpiador numérico (remueve puntos para guardar el número entero en base de datos)
     function cleanFormattedNumber(valStr) {
       return parseInt(valStr.replace(/\./g, ""), 10) || 0;
     }
 
-    // Formateador de fecha bonita (Ene 15, 2026)
+    // Formatear fechas para mostrar en pantalla ("15 May, 2026")
     function formatDatePretty(dateStr) {
       if (!dateStr) return '';
       const date = new Date(dateStr + 'T12:00:00');
@@ -553,7 +418,7 @@
       return `${date.getDate()} ${months[date.getMonth()]}, ${date.getFullYear()}`;
     }
 
-    // Sumar 6 meses exactos para el plan semestral
+    // Sumar automáticamente un semestre (6 meses exactos)
     function calculateNextServiceDate(dateStr) {
       if (!dateStr) return '';
       const date = new Date(dateStr + 'T12:00:00');
@@ -561,7 +426,7 @@
       return date.toISOString().split('T')[0];
     }
 
-    // Calcular días restantes para la próxima fumigación
+    // Calcular días faltantes para la próxima fecha
     function getDaysRemaining(nextDateStr) {
       if (!nextDateStr) return 0;
       const today = new Date();
@@ -571,23 +436,38 @@
       return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     }
 
-    // Cambiar pantallas del mockup
-    function switchScreen(screen) {
-      const detailView = document.getElementById('screen-detail');
-      const formView = document.getElementById('screen-form');
+    // NAVEGACIÓN ENTRE VISTAS DE CELULAR (TABS)
+    function goToTab(tabName) {
+      const screens = ['dashboard', 'add', 'detail'];
+      
+      // Ocultar todas las pantallas
+      screens.forEach(s => {
+        document.getElementById(`screen-${s}`).classList.add('hidden');
+        
+        // Estilizar tabs inactivos
+        const tabBtn = document.getElementById(`tab-${s}`);
+        tabBtn.className = "flex flex-col items-center justify-center flex-1 py-1 text-slate-400 hover:text-slate-900 transition-colors";
+        tabBtn.querySelector('span').className = "text-[10px] mt-1 font-semibold tracking-tight";
+      });
 
-      if (screen === 'form') {
-        detailView.classList.add('hidden');
-        formView.classList.remove('hidden');
-      } else {
-        formView.classList.add('hidden');
-        detailView.classList.remove('hidden');
+      // Mostrar pantalla seleccionada
+      const activeScreen = document.getElementById(`screen-${tabName}`);
+      activeScreen.classList.remove('hidden');
+
+      // Estilizar tab activo
+      const activeTabBtn = document.getElementById(`tab-${tabName}`);
+      activeTabBtn.className = "flex flex-col items-center justify-center flex-1 py-1 text-teal-600 transition-colors";
+      activeTabBtn.querySelector('span').className = "text-[10px] mt-1 font-bold tracking-tight";
+
+      // Al cambiar al Tab de Detalle, forzar la recarga del elemento seleccionado
+      if (tabName === 'detail' && selectedId) {
+        loadDetailScreen(selectedId);
       }
     }
 
-    // CALCULAR METRICAS FINANCIERAS
+    // CALCULAR Y ACTUALIZAR MÉTRICAS DE INGRESOS
     function updateMetrics() {
-      // 1. Ingreso Total Histórico (Suma de todo el historial de cobros de todos los locales)
+      // 1. Ingreso Total Histórico (Suma de todo el historial de cobros)
       let total = 0;
       services.forEach(s => {
         const historySum = s.history?.reduce((sum, h) => sum + h.amount, 0) || s.amount;
@@ -595,35 +475,39 @@
       });
       document.getElementById('display-total-income').innerText = formatGuarani(total);
 
-      // 2. Ingreso del Mes Seleccionado (Por defecto el mes actual o el seleccionado en el gráfico)
+      // 2. Ingreso del mes (Mayo de 2026 por defecto o el mes del gráfico seleccionado)
       const currentMonthKey = new Date().toISOString().substring(0, 7); // "2026-05"
       const activeMonth = selectedMonth || currentMonthKey;
-      
+
       let monthSum = 0;
       services.forEach(s => {
         const matchingPayments = s.history?.filter(h => h.date.substring(0, 7) === activeMonth) || [];
         monthSum += matchingPayments.reduce((sum, h) => sum + h.amount, 0);
       });
 
+      // Cambiar etiqueta del mes dinámicamente
+      const monthsSpan = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+      const monthNum = parseInt(activeMonth.split('-')[1], 10);
+      document.getElementById('month-income-label').innerText = `Cobrado en ${monthsSpan[monthNum - 1]}`;
       document.getElementById('display-month-income').innerText = formatGuarani(monthSum);
 
-      // Cambiar los estilos de los botones de barra según selección
+      // Actualizar visualización de las barras del gráfico
       const bars = ['2026-01', '2026-02', '2026-03', '2026-04', '2026-05'];
       bars.forEach(m => {
         const barElement = document.getElementById(`bar-${m}`);
         if (barElement) {
           if (selectedMonth === m) {
-            barElement.className = "w-6 bg-slate-900 rounded-t h-[95%] transition-all-300 relative";
+            barElement.className = "w-6 bg-slate-900 rounded-t h-[95%] transition-all duration-300 relative";
             barElement.innerHTML = `<div class="absolute inset-0 bg-gradient-to-t from-teal-600 to-teal-400 rounded-t"></div>`;
           } else {
-            barElement.className = "w-6 bg-slate-200 hover:bg-teal-500/40 rounded-t h-[45%] transition-all-300 relative";
+            barElement.className = "w-6 bg-slate-200 hover:bg-teal-500/40 rounded-t h-[45%] transition-all duration-300 relative";
             barElement.innerHTML = "";
           }
         }
       });
     }
 
-    // Filtrar la lista inferior al presionar las barras del gráfico
+    // Filtrar al pulsar barras de la gráfica
     function filterByMonth(monthKey) {
       if (selectedMonth === monthKey) {
         selectedMonth = null;
@@ -648,58 +532,51 @@
       renderServices();
     }
 
-    // NUEVA FUNCIÓN: RENDERIZAR PRÓXIMOS SERVICIOS A REALIZAR EN PANTALLA PRINCIPAL
+    // ALERTAS DE PRÓXIMOS SERVICIOS
     function renderUpcomingServices() {
       const container = document.getElementById('upcoming-services-container');
-      if (!container) return;
       container.innerHTML = "";
 
-      // Mapeamos los locales calculando días restantes y los ordenamos de más cercano/vencido a más lejano
       const upcoming = services.map(s => {
         const nextDate = calculateNextServiceDate(s.paymentDate);
         const daysLeft = getDaysRemaining(nextDate);
         return { ...s, nextDate, daysLeft };
-      }).sort((a, b) => a.daysLeft - b.daysLeft); // De menor a mayor cantidad de días
+      }).sort((a, b) => a.daysLeft - b.daysLeft);
 
       if (upcoming.length === 0) {
-        container.innerHTML = `
-          <div class="text-center py-4 bg-slate-50 border border-slate-200 rounded-xl">
-            <p class="text-[9px] text-slate-400 font-bold">No hay servicios programados.</p>
-          </div>
-        `;
+        container.innerHTML = `<p class="text-[10px] text-slate-400 font-bold text-center py-2">Sin planificaciones.</p>`;
         return;
       }
 
-      // Mostramos las fumigaciones ordenadas de manera compacta y estética
       upcoming.forEach(s => {
         let badgeColor = "bg-emerald-50 text-emerald-700 border-emerald-100";
         let daysText = `En ${s.daysLeft} días`;
 
         if (s.daysLeft < 0) {
-          badgeColor = "bg-rose-50 text-rose-700 border-rose-100 animate-pulse font-black";
-          daysText = `Vencido hace ${Math.abs(s.daysLeft)} días ⚠️`;
+          badgeColor = "bg-rose-50 text-rose-700 border-rose-100 font-bold animate-pulse";
+          daysText = `Vencido hace ${Math.abs(s.daysLeft)} d`;
         } else if (s.daysLeft < 15) {
-          badgeColor = "bg-amber-50 text-amber-700 border-amber-100 font-bold";
-          daysText = `En ${s.daysLeft} días ⏳`;
+          badgeColor = "bg-amber-50 text-amber-700 border-amber-100 font-semibold";
+          daysText = `En ${s.daysLeft} d`;
         }
 
         const card = document.createElement('div');
-        card.onclick = () => selectService(s.id);
-        card.className = `p-2 rounded-xl border border-slate-200/50 bg-slate-50/80 hover:bg-slate-100 cursor-pointer flex justify-between items-center transition-all-300 ${
-          s.id === selectedId ? 'ring-1 ring-indigo-300 bg-indigo-50/20' : ''
+        card.onclick = () => selectAndNavigateToDetail(s.id);
+        card.className = `p-2.5 rounded-xl border border-slate-200/50 bg-slate-50/70 hover:bg-slate-50 cursor-pointer flex justify-between items-center ${
+          s.id === selectedId ? 'ring-1 ring-teal-500 bg-teal-50/10' : ''
         }`;
 
         card.innerHTML = `
           <div class="flex items-center space-x-2 min-w-0">
-            <div class="w-6 h-6 rounded bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-[10px]">
+            <div class="w-6 h-6 rounded bg-teal-100 text-teal-700 flex items-center justify-center font-black text-[10px]">
               ${s.localName.charAt(0).toUpperCase()}
             </div>
             <div class="min-w-0">
               <h5 class="text-[10px] font-black text-slate-900 truncate leading-tight">${s.localName}</h5>
-              <p class="text-[8px] text-slate-400 font-semibold leading-none">Próx: ${formatDatePretty(s.nextDate)}</p>
+              <p class="text-[8px] text-slate-400 font-bold leading-none mt-0.5">Siguiente: ${formatDatePretty(s.nextDate)}</p>
             </div>
           </div>
-          <span class="text-[8px] font-extrabold px-1.5 py-0.5 rounded-full border ${badgeColor}">
+          <span class="text-[8px] font-extrabold px-2 py-0.5 rounded-full border ${badgeColor}">
             ${daysText}
           </span>
         `;
@@ -707,16 +584,14 @@
       });
     }
 
-    // RENDERIZAR LA LISTA DE SERVICIOS
+    // RENDERIZAR LISTADO DE LOCALES REGISTRADOS
     function renderServices() {
       const query = document.getElementById('search-input').value.toLowerCase();
       const container = document.getElementById('services-list-container');
       container.innerHTML = "";
 
-      // Filtrar servicios basándonos en búsqueda y mes seleccionado
       const filtered = services.filter(s => {
         const matchesQuery = s.clientName.toLowerCase().includes(query) || s.localName.toLowerCase().includes(query);
-        
         if (selectedMonth) {
           const hasPaymentInMonth = s.history?.some(h => h.date.substring(0, 7) === selectedMonth);
           return matchesQuery && hasPaymentInMonth;
@@ -727,7 +602,7 @@
       if (filtered.length === 0) {
         container.innerHTML = `
           <div class="text-center py-8 bg-slate-50 border border-dashed border-slate-200 rounded-2xl">
-            <p class="text-[10px] text-slate-400 font-bold">Sin registros encontrados.</p>
+            <p class="text-[10px] text-slate-400 font-bold">Sin locales registrados.</p>
           </div>
         `;
         return;
@@ -738,7 +613,6 @@
         const daysLeft = getDaysRemaining(nextDate);
         const isSelected = s.id === selectedId;
 
-        // Definir clases y colores del estado
         let badgeColor = "bg-emerald-50 text-emerald-700 border-emerald-100";
         let badgeText = "Al día";
         if (daysLeft < 15) {
@@ -751,51 +625,48 @@
         }
 
         const item = document.createElement('div');
-        item.onclick = () => selectService(s.id);
-        item.className = `p-3 rounded-2xl border transition-all duration-200 cursor-pointer flex items-center justify-between group ${
+        item.onclick = () => selectAndNavigateToDetail(s.id);
+        item.className = `p-3 rounded-2xl border flex items-center justify-between cursor-pointer transition-all ${
           isSelected 
-            ? 'bg-slate-50 border-slate-300 shadow-sm ring-1 ring-slate-300' 
+            ? 'bg-slate-50 border-slate-300 ring-1 ring-slate-300' 
             : 'bg-white border-slate-100 hover:border-slate-300 hover:bg-slate-50'
         }`;
 
         item.innerHTML = `
           <div class="flex items-center space-x-2.5 min-w-0">
-            <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 font-bold text-xs ${
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs ${
               s.localType === 'Industrial' ? 'bg-purple-100 text-purple-700' : s.localType === 'Residencial' ? 'bg-amber-100 text-amber-700' : 'bg-teal-100 text-teal-700'
             }">
               ${s.localName.charAt(0).toUpperCase()}
             </div>
             <div class="min-w-0">
-              <h5 class="text-[11px] font-black text-slate-900 truncate group-hover:text-teal-600 transition-colors">${s.localName}</h5>
-              <p class="text-[9px] text-slate-400 font-bold truncate">Cliente: ${s.clientName}</p>
-              <span class="text-[8px] font-black px-1.5 py-0.5 rounded-full border ${badgeColor}">${badgeText}</span>
+              <h5 class="text-[10px] font-black text-slate-900 truncate leading-none">${s.localName}</h5>
+              <p class="text-[8px] text-slate-400 font-semibold truncate mt-1">Cliente: ${s.clientName}</p>
+              <span class="text-[8px] font-black px-1.5 py-0.5 rounded-full border mt-1.5 inline-block ${badgeColor}">${badgeText}</span>
             </div>
           </div>
           <div class="text-right flex-shrink-0">
-            <span class="text-[11px] font-extrabold text-slate-900 block">${formatGuarani(s.amount)}</span>
-            <span class="text-[8px] text-indigo-600 font-extrabold block mt-0.5">Siguiente: ${formatDatePretty(nextDate)}</span>
+            <span class="text-[10px] font-black text-slate-900 block">${formatGuarani(s.amount)}</span>
+            <span class="text-[8px] text-indigo-600 font-extrabold block mt-0.5">Próx: ${formatDatePretty(nextDate)}</span>
           </div>
         `;
-
         container.appendChild(item);
       });
     }
 
-    // SELECCIONAR Y VISUALIZAR UN LOCAL
-    function selectService(id) {
-      selectedId = id;
+    // CARGAR DETALLES DEL LOCAL EN LA PANTALLA DE DETALLE
+    function loadDetailScreen(id) {
       const s = services.find(x => x.id === id);
       if (!s) return;
 
-      // Actualizar detalles textuales
       document.getElementById('detail-local-name').innerText = s.localName;
       document.getElementById('detail-client-name').innerText = `Cliente: ${s.clientName}`;
       document.getElementById('detail-local-type').innerText = s.localType.toUpperCase();
       document.getElementById('detail-payment-date').innerText = formatDatePretty(s.paymentDate);
-      
+
       const nextDate = calculateNextServiceDate(s.paymentDate);
       const daysLeft = getDaysRemaining(nextDate);
-      
+
       document.getElementById('detail-next-date').querySelector('span').innerText = formatDatePretty(nextDate);
       
       const daysBadge = document.getElementById('detail-remaining-days');
@@ -808,64 +679,45 @@
 
       document.getElementById('detail-notes').innerText = s.notes || 'Sin observaciones.';
 
-      // Estilo de logo según tipo
       const logo = document.getElementById('detail-logo-container');
       logo.innerText = s.localName.charAt(0).toUpperCase();
       if (s.localType === 'Industrial') {
-        logo.className = "w-14 h-14 rounded-2xl bg-purple-600 text-white flex items-center justify-center font-black text-xl shadow-md";
+        logo.className = "w-11 h-11 rounded-2xl bg-purple-600 text-white flex items-center justify-center font-black text-lg shadow-md";
       } else if (s.localType === 'Residencial') {
-        logo.className = "w-14 h-14 rounded-2xl bg-amber-500 text-white flex items-center justify-center font-black text-xl shadow-md";
+        logo.className = "w-11 h-11 rounded-2xl bg-amber-500 text-white flex items-center justify-center font-black text-lg shadow-md";
       } else {
-        logo.className = "w-14 h-14 rounded-2xl bg-teal-500 text-white flex items-center justify-center font-black text-xl shadow-md";
+        logo.className = "w-11 h-11 rounded-2xl bg-teal-500 text-white flex items-center justify-center font-black text-lg shadow-md";
       }
 
-      // Renderizar historial de cobros semestrales
+      // Historial de pagos semestrales
       const historyContainer = document.getElementById('detail-billing-history');
       historyContainer.innerHTML = "";
-      
-      // Si por algún motivo no existe historial, creamos uno básico
       const payments = s.history || [{ date: s.paymentDate, amount: s.amount, method: s.paymentMethod }];
-      
+
       payments.forEach(p => {
-        const histRow = document.createElement('div');
-        histRow.className = "bg-white border border-slate-200/60 rounded-xl p-2.5 flex items-center justify-between text-[11px]";
-        histRow.innerHTML = `
+        const row = document.createElement('div');
+        row.className = "bg-white border border-slate-200/50 rounded-xl p-2.5 flex items-center justify-between text-[11px]";
+        row.innerHTML = `
           <div class="flex items-center space-x-2">
-            <div class="w-7 h-7 rounded bg-slate-100 flex items-center justify-center text-slate-600">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            </div>
+            <div class="w-6 h-6 rounded bg-slate-100 flex items-center justify-center text-slate-500 font-bold text-[9px]">₲</div>
             <div>
               <span class="font-extrabold text-slate-800 block">${formatDatePretty(p.date)}</span>
-              <span class="text-[9px] text-slate-400 font-bold block leading-none">Método: ${p.method}</span>
+              <span class="text-[8px] text-slate-400 font-bold block">Método: ${p.method}</span>
             </div>
           </div>
           <span class="font-black text-slate-900">${formatGuarani(p.amount)}</span>
         `;
-        historyContainer.appendChild(histRow);
+        historyContainer.appendChild(row);
       });
-
-      renderServices();
-      renderUpcomingServices(); // Sincroniza la lista de alertas
-      switchScreen('detail');
     }
 
-    // ELIMINAR EL SERVICIO SELECCIONADO
-    function deleteSelectedService() {
-      if (services.length <= 1) {
-        // En lugar de alert() nativo, informamos con un mensaje elegante
-        showNotificationModal("Debe quedar al menos un local registrado en el panel.");
-        return;
-      }
-      if (confirm("¿Estás seguro de que deseas eliminar este local de tu registro?")) {
-        services = services.filter(s => s.id !== selectedId);
-        saveToStorage();
-        selectedId = services[0].id;
-        selectService(selectedId);
-        updateMetrics();
-      }
+    // Seleccionar y redirigir automáticamente al Tab de Detalle
+    function selectAndNavigateToDetail(id) {
+      selectedId = id;
+      goToTab('detail');
     }
 
-    // REGISTRO DE UN NUEVO SERVICIO DESDE EL FORMULARIO
+    // REGISTRO DE NUEVO SERVICIO POR FORMULARIO
     function handleFormSubmit(e) {
       e.preventDefault();
 
@@ -880,7 +732,7 @@
       const numericAmount = cleanFormattedNumber(amountStr);
 
       if (!localName || !clientName || !paymentDate || numericAmount <= 0) {
-        showNotificationModal("Por favor completa todos los campos y define un monto válido.");
+        showNotificationModal("Por favor completa los campos obligatorios.");
         return;
       }
 
@@ -898,7 +750,6 @@
         ]
       };
 
-      // Guardar y renderizar de nuevo
       services.unshift(newService);
       saveToStorage();
       selectedId = newService.id;
@@ -908,33 +759,65 @@
       document.getElementById('form-client-name').value = "";
       document.getElementById('form-amount').value = "";
       document.getElementById('form-notes').value = "";
-      
-      // Actualizar pantalla
+
       updateMetrics();
-      selectService(selectedId);
+      goToTab('dashboard');
     }
 
-    // Función auxiliar para notificaciones en lugar de alert()
+    // ELIMINAR REGISTRO SELECCIONADO
+    function deleteSelectedService() {
+      if (services.length <= 1) {
+        showNotificationModal("La aplicación debe conservar al menos un local en el registro.");
+        return;
+      }
+      
+      // Mostrar modal personalizado de confirmación
+      const confirmModal = document.createElement('div');
+      confirmModal.className = "fixed inset-0 flex items-center justify-center bg-slate-950/60 z-[99] px-4";
+      confirmModal.innerHTML = `
+        <div class="bg-white p-6 rounded-3xl max-w-sm w-full text-center shadow-2xl border border-slate-100">
+          <div class="w-12 h-12 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center mx-auto mb-3 text-xl font-bold">🗑️</div>
+          <h4 class="text-xs font-black text-slate-900 mb-2">¿Eliminar este local?</h4>
+          <p class="text-[11px] text-slate-500 mb-4 font-semibold leading-relaxed">Esta acción borrará de manera definitiva el historial de fumigación.</p>
+          <div class="flex space-x-3">
+            <button id="cancelBtn" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-extrabold py-2.5 rounded-xl text-[11px] transition-colors">Cancelar</button>
+            <button id="deleteBtn" class="flex-1 bg-rose-600 hover:bg-rose-700 text-white font-extrabold py-2.5 rounded-xl text-[11px] transition-all">Eliminar</button>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(confirmModal);
+
+      document.getElementById('cancelBtn').onclick = () => confirmModal.remove();
+      document.getElementById('deleteBtn').onclick = () => {
+        services = services.filter(s => s.id !== selectedId);
+        saveToStorage();
+        selectedId = services[0].id;
+        updateMetrics();
+        goToTab('dashboard');
+        confirmModal.remove();
+      };
+    }
+
+    // NOTIFICACIÓN ELEGANTE DE SISTEMA (Reemplaza alert())
     function showNotificationModal(text) {
       const modal = document.createElement('div');
-      modal.className = "fixed inset-0 flex items-center justify-center bg-black/50 z-50 px-4";
+      modal.className = "fixed inset-0 flex items-center justify-center bg-slate-950/60 z-[99] px-4";
       modal.innerHTML = `
-        <div class="bg-white p-6 rounded-3xl max-w-sm w-full text-center shadow-xl border border-slate-100">
-          <div class="w-12 h-12 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center mx-auto mb-3 text-xl font-bold">⚠️</div>
-          <h4 class="text-sm font-black text-slate-900 mb-2">Aviso del Sistema</h4>
-          <p class="text-xs text-slate-500 mb-4 font-semibold leading-relaxed">${text}</p>
-          <button onclick="this.parentElement.parentElement.remove()" class="w-full bg-slate-900 hover:bg-slate-850 text-white font-extrabold py-2.5 rounded-xl text-xs transition-colors">Entendido</button>
+        <div class="bg-white p-6 rounded-3xl max-w-sm w-full text-center shadow-2xl border border-slate-100">
+          <div class="w-12 h-12 rounded-full bg-amber-50 text-amber-500 flex items-center justify-center mx-auto mb-3 text-xl font-bold">⚠️</div>
+          <h4 class="text-xs font-black text-slate-900 mb-2">Aviso del Sistema</h4>
+          <p class="text-[11px] text-slate-500 mb-4 font-semibold leading-relaxed">${text}</p>
+          <button onclick="this.parentElement.parentElement.remove()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-extrabold py-2.5 rounded-xl text-[11px] transition-all">Entendido</button>
         </div>
       `;
       document.body.appendChild(modal);
     }
 
-    // INICIAR LA APP AL CARGAR LA PÁGINA
+    // INICIACIÓN AUTOMÁTICA
     window.onload = function() {
       updateMetrics();
-      if (selectedId) {
-        selectService(selectedId);
-      }
+      renderUpcomingServices();
+      renderServices();
     }
   </script>
 </body>
